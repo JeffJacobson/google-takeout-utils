@@ -67,8 +67,7 @@ class SubscriptionInfo {
    */
   public get opmlOption(): string {
     const title = modifyStringsForXml(this.title);
-    return `<outline title="${title}">
-      <outline type="rss" title="${title}" text="${title}" version="RSS" xmlUrl="${this.feedUrl}" htmlUrl="${this.feedUrl}"/></outline>`;
+    return `<outline type="rss" title="${title}" text="${title}" version="RSS" xmlUrl="${this.feedUrl}" htmlUrl="${this.feedUrl}"/>`;
   }
 
   constructor(
@@ -101,7 +100,7 @@ const subscriptionInfos = await new Promise<SubscriptionInfo[]>((resolve, reject
       if (err) {
         reject(err);
       } else {
-        let subscriptionInfos = (records as Array<SubscriptionRow>).map(
+        const subscriptionInfos = (records as Array<SubscriptionRow>).map(
           (r) =>
             new SubscriptionInfo(
               r["Channel Id"],
